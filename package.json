@@ -1,0 +1,23 @@
+{
+  "name": "word-guess-game-cl",
+  "version": "1.0.0",
+  "description": "* This is Berkeley Coding Boot Camp (BCBC) week 6 homework assignment.     * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across the client and server.    * The Word Guess Game is a command-line node application that takes in parameters and returns data.     * The game randomly selects a word and prompts user for letter guesses until the word is guessed or number of guesses runs out.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkawahara/word-guess-cl.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkawahara/word-guess-cl/issues"
+  },
+  "homepage": "https://github.com/jkawahara/word-guess-cl#readme",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}

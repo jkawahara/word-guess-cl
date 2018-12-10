@@ -8,7 +8,6 @@
 ### 2. What / Objectives / User Stories
   * This project development, from design through deployment of the Word Guess Game application, used Node.js as the primary web development technology on the server side along with npm:
     * The following npm packages were used:
-      * inquirer: collection of common interactive command-line user interfaces
       * prompt: command-line prompt for node.js
   * User Stories, by categorization:
     * Letter.js constructor
@@ -36,7 +35,6 @@
   * Built With:
     * [Node.js](https://nodejs.org/docs/latest/api/documentation.html)
     * [npm](https://www.npmjs.com/)
-      * [inquirer](https://www.npmjs.com/package/inquirer)
       * [prompt](https://www.npmjs.com/package/prompt)
 
   * Installing:
