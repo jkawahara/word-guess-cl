@@ -5,7 +5,7 @@ var Word = require('./word.js');
 // *** DECLARE GLOBAL VARIABLES / FUNCTIONS
 var wordsStart = ["JavaScript", "Variable", "Function", "Array", "HTML", "CSS", "jQuery", "Terminal", "Pseudocode", "MERN"];
 var wordsRemain = wordsStart.slice();
-var wordsIndex, currentWord, guessRemain, word;
+var wordsIndex, currentWord, guessRemain, word, guessedWordFlag;
 var guessedLetters = [];
 
 function selectWord() {
@@ -14,12 +14,13 @@ function selectWord() {
   wordsIndex = Math.floor(Math.random() * wordsRemain.length);
   currentWord = wordsRemain.splice(wordsIndex, 1).toString().toLowerCase();
   console.log(currentWord);
-  word = new Word();    
+  word = new Word();
+  word.createLetterObject(currentWord);    
   startGuessing();
 }
  
 function startGuessing() {
-  if (guessRemain > 0) {
+  if (guessRemain > 0) {    
     console.log(word.returnString(currentWord));
     inquirer.prompt([
       {
@@ -48,6 +49,23 @@ function startGuessing() {
       word.callGuess(guess);
       console.log('Letters guessed: ' + guessedLetters.join(' '));
       guessRemain--;
+      
+      console.log(guessRemain);
+      console.log(word.letterObjects.length);
+      guessedWordFlag = true;
+      for (var i = 0; i < word.letterObjects.length; i++) {      
+        if (word.letterObjects[i].guessedFlag === false) {
+          guessedWordFlag = false;
+        }
+      }
+      console.log(' ' + guessedWordFlag);
+      
+      if (guessedWordFlag === true) {
+        console.log(word.returnString(currentWord));
+        console.log('You got it right! Next word!');
+        selectWord();
+        return;
+      }
       startGuessing();
     });
   } else {
@@ -63,6 +81,3 @@ function startGuessing() {
 
 // *** MAIN CONTROLLER
 selectWord();
-
-// var word = new Word();
-// console.log(word.returnString('javascript'));

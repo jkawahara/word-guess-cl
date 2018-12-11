@@ -5,11 +5,12 @@ var Letter = require('./letter.js');
 // Word constructor
 function Word() {
   this.letterObjects = [],  
-  this.returnString = function(word) {
+  this.createLetterObject = function(word) {
     for (var i = 0; i < word.length; i++) {
       this.letterObjects.push(new Letter(word[i]));
-  
     }
+  },
+  this.returnString = function(word) {
     return this.letterObjects.join(' ');
   },
   this.callGuess = function(guessedLetter) {    
