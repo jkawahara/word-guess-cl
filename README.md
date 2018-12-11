@@ -58,7 +58,7 @@
         * package.json - includes dependencies: inquirer
         * README.md
         * word.js
-    * Once the application files are ready per the above structure, go to the application root directory level /word-guess-game-cl and enter the following in the dfd to install required node packages. This executes by refering to the included dependencies in package.json and creates required node packages in /node_modules and package-lock.json:
+    * Once the application files are ready per the above structure, go to the application root directory level /word-guess-game-cl and enter the following to install required node packages. This executes by refering to the included dependencies in package.json and creates required node packages in /node_modules and package-lock.json:
       * npm install
 
   * Running the tests:
