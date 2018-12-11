@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 var Word = require('./word.js');
   
 // *** DECLARE GLOBAL VARIABLES / FUNCTIONS
-var wordsStart = ["JavaScript", "Variable", "Function", "Array", "HTML", "CSS", "jQuery", "Terminal", "Pseudocode", "MERN"];
+var wordsStart = ['JavaScript', 'Variable', 'Function', 'Array', 'HTML', 'CSS', 'jQuery', 'Terminal', 'Pseudocode', 'MERN'];
 var wordsRemain = wordsStart.slice();
 var wordsIndex, currentWord, guessRemain, word, guessedWordFlag;
 var guessedLetters = [];
@@ -13,7 +13,6 @@ function selectWord() {
   guessedLetters = [];
   wordsIndex = Math.floor(Math.random() * wordsRemain.length);
   currentWord = wordsRemain.splice(wordsIndex, 1).toString().toLowerCase();
-  console.log(currentWord);
   word = new Word();
   word.createLetterObject(currentWord);    
   startGuessing();
@@ -21,7 +20,7 @@ function selectWord() {
  
 function startGuessing() {
   if (guessRemain > 0) {    
-    console.log(word.returnString(currentWord));
+    console.log('\n' + word.returnString(currentWord) + '\n');
     inquirer.prompt([
       {
         type: 'input',
@@ -47,33 +46,34 @@ function startGuessing() {
       var guess = guess.letter.toLowerCase();      
       guessedLetters.push(guess);
       word.callGuess(guess);
-      console.log('Letters guessed: ' + guessedLetters.join(' '));
-      guessRemain--;
-      
-      console.log(guessRemain);
-      console.log(word.letterObjects.length);
       guessedWordFlag = true;
       for (var i = 0; i < word.letterObjects.length; i++) {      
         if (word.letterObjects[i].guessedFlag === false) {
           guessedWordFlag = false;
         }
       }
-      console.log(' ' + guessedWordFlag);
       
-      if (guessedWordFlag === true) {
+      if (guessedWordFlag === true && wordsRemain.length > 0) {
         console.log(word.returnString(currentWord));
-        console.log('You got it right! Next word!');
-        selectWord();
+        console.log('\nYou got it right! Next word!');
+        return selectWord();
+      } else if (guessedWordFlag === true && wordsRemain.length === 0) {
+        console.log(word.returnString(currentWord));
+        console.log('\nYou got it right! No more words...Game Over!');
         return;
       }
+      console.log('\nLetters guessed: ' + guessedLetters.join(' '));
+      guessRemain--;
+      console.log('\n' + guessRemain + ' guesses remaining!');
       startGuessing();
     });
   } else {
     if (wordsRemain.length > 0) {
-    console.log('You got it wrong! Next word!');
-    selectWord()
+      console.log('\nYou got it wrong! Next word!');
+      selectWord()
     } else {
-      console.log('Game over!');
+      console.log('\nYou got it wrong! No more words...Game Over!');
+      return;
     }
   }
   
