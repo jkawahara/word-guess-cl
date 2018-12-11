@@ -26,21 +26,21 @@ function startGuessing() {
         type: 'input',
         name: 'letter',
         message: '? Guess a letter!',
-        // validate: function(value) {
-        //   var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-        //   var flag = false;
-        //   for (var i = 0; i < alphabet.length; i++) {
-        //     if (value === alphabet[i]) {
-        //       flag = true;
-        //       for (var j = 0; j < guessedLetters.length; j++) {
-        //         if (value === guessedLetters[i]) {
-        //           flag = false;
-        //         }
-        //       }
-        //     }
-        //   }
-        //   return flag;
-        // }
+        validate: function(value) {
+          var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+          var flag = false;
+          for (var i = 0; i < alphabet.length; i++) {
+            if (value === alphabet[i]) {
+              flag = true;
+              for (var j = 0; j < guessedLetters.length; j++) {
+                if (value === guessedLetters[j]) {
+                  flag = false;
+                }
+              }
+            }
+          }
+          return flag;
+        }
       }
     ]).then(function(guess) {
       var guess = guess.letter.toLowerCase();      
