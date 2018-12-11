@@ -8,6 +8,7 @@ var wordsRemain = wordsStart.slice();
 var wordsIndex, currentWord, guessRemain, word, guessedWordFlag;
 var guessedLetters = [];
 
+// Select word from remaining words array
 function selectWord() {
   guessRemain = 12;
   guessedLetters = [];
@@ -17,10 +18,13 @@ function selectWord() {
   word.createLetterObject(currentWord);    
   startGuessing();
 }
- 
+
+// Prompt for letter guesses
 function startGuessing() {
   if (guessRemain > 0) {    
     console.log('\n' + word.returnString(currentWord) + '\n');
+    
+    // Inquirer prompt for letter of input type with validate property
     inquirer.prompt([
       {
         type: 'input',
@@ -42,10 +46,13 @@ function startGuessing() {
           return flag;
         }
       }
+    // Promise callback to call callGuess() method of Word constructor
     ]).then(function(guess) {
       var guess = guess.letter.toLowerCase();      
       guessedLetters.push(guess);
       word.callGuess(guess);
+
+      // Check if any letters have not been guessed
       guessedWordFlag = true;
       for (var i = 0; i < word.letterObjects.length; i++) {      
         if (word.letterObjects[i].guessedFlag === false) {
@@ -53,6 +60,7 @@ function startGuessing() {
         }
       }
       
+      // Check if all letters have been guessed and words remain to be guessed
       if (guessedWordFlag === true && wordsRemain.length > 0) {
         console.log(word.returnString(currentWord));
         console.log('\nYou got it right! Next word!');
@@ -62,12 +70,15 @@ function startGuessing() {
         console.log('\nYou got it right! No more words...Game Over!');
         return;
       }
+
+      // Display letters guessed, remaining guesses and continue prompting for guesses; recursive call on startGuessing()
       console.log('\nLetters guessed: ' + guessedLetters.join(' '));
       guessRemain--;
       console.log('\n' + guessRemain + ' guesses remaining!');
       startGuessing();
     });
   } else {
+    // Check if words remain to be guessed and call selectWord() or end game
     if (wordsRemain.length > 0) {
       console.log('\nYou got it wrong! Next word!');
       selectWord()
@@ -80,4 +91,5 @@ function startGuessing() {
 }
 
 // *** MAIN CONTROLLER
+// Start game by selecting first word
 selectWord();

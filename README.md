@@ -11,18 +11,27 @@
       * prompt: command-line prompt for node.js
   * User Stories, by categorization:
     * Letter.js constructor
-      * Display an underlying character or a blank placeholder (such as an underscore), depending on whether or not the user has guessed the letter
     * Word.js constructor
-      * Create an object representing the current word user is attempting to guess
     * Index.js contains logic for game
 
 ### 3. How / Design Description
   * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). Due to limited scope and non-group assignment, GitHub's built-in tools were not used to support project execution:
     * [Projects](https://github.com/jkawahara/word-guess-game-cl/projects) Kanban board for documenting user stories and overall progress
     * [Issues](https://github.com/jkawahara/word-guess-game-cl/issues) Issue tracking for user stories, features and bug report
-  * Functionality - refer to TBD of application user flow:
+  * Functionality - refer to [video of application user flow](https://drive.google.com/drive/folders/1DLrzmSzKT2EsZuXs3bExjs2jGyQZEbYn?usp=sharing):
     * Design Description
-      * 
+      * Index main controller
+        * Run application if command is entered in terminal
+        * Command: node index.js
+        * Relevant modules: selectWord(), startGuessing(), index.js 
+      * Letter constructor
+        * This constructor should be able to either display an underlying character or a blank placeholder (such as an underscore), depending on whether or not the user has guessed the letter
+        * Command: N/A
+        * Relevant modules: Letter(), letter.js
+      * Word constructor
+        * This is used to create an object representing the current word the user is attempting to guess
+        * Command: N/A
+        * Relevant modules: Word(), word.js
 
   * Prerequisites for Development:
     * MacBook Air (Intel Core i7, 2.2 GHz, 1 Processor, 2 Cores, 8GB)
